@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+@layer base {
+  :root {
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
+
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: linear-gradient(to top left,#0F2027,#203A43,#2C5364);
+    --background: 210 97.2% 98.22%;
+    --foreground: 210 4.4% 0.44%;
+
+    --muted: 210 4.4% 91.1%;
+    --muted-foreground: 210 2.2% 41.1%;
+
+    --popover: 210 54.8% 91.1%;
+    --popover-foreground: 210 4.4% 0.55%;
+
+    --card: 210 54.8% 91.1%;
+    --card-foreground: 210 4.4% 0.55%;
+
+    --border: 210 9.4% 89.44%;
+    --input: 210 9.4% 89.44%;
+
+    --primary: 210 44% 11%;
+    --primary-foreground: 210 0.88% 91.1%;
+
+    --secondary: 210 2.2% 95.55%;
+    --secondary-foreground: 210 3.64% 11.1%;
+
+    --accent: 210 2.2% 95.55%;
+    --accent-foreground: 210 3.64% 11.1%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 210 44% 11%;
+
+    --radius: 0.5rem;
+  }
+  .dark {
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
+
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: linear-gradient(to top left,#757F9A,#D7DDE8);
+
+    --background: 238 9.75% 4.24%;
+    --foreground: 238 1.5% 97.65%;
+
+    --muted: 238 7.5% 15.9%;
+    --muted-foreground: 238 1.5% 55.3%;
+
+    --popover: 238 62% 6.890000000000001%;
+    --popover-foreground: 238 1.5% 97.65%;
+
+    --card: 238 62% 6.890000000000001%;
+    --card-foreground: 238 1.5% 97.65%;
+
+    --border: 238 7.5% 15.9%;
+    --input: 238 7.5% 15.9%;
+
+    --primary: 238 15% 53%;
+    --primary-foreground: 238 1.5% 5.300000000000001%;
+
+    --secondary: 238 7.5% 15.9%;
+    --secondary-foreground: 238 1.5% 97.65%;
+
+    --accent: 238 7.5% 15.9%;
+    --accent-foreground: 238 1.5% 97.65%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 238 1.5% 97.65%;
+
+    --ring: 238 15% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.dotPattern {
+  background-image: radial-gradient(rgb(35, 40, 68) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
+.use-automation-zoom-in {
+  animation: automation-zoom-in 0.5s;
+}
+
+@keyframes automation-zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
