@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/card";
 import { pricingCards } from "@/lib/constants";
 import clsx from "clsx";
-import { Check, Divide, Link } from "lucide-react";
+import { Check } from "lucide-react";
+import Link from 'next/link'
 import Image from "next/image";
 
 export default function Home() {
@@ -16,9 +17,8 @@ export default function Home() {
     <>
       <section className="h-full w-full pt-36 relative flex items-center justify-center flex-col">
         {/* grid */}
-
         <div className="absolute top-0 z-[-2] h-screen w-screen bg-white dark:bg-black bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
-        <p className="text-center">Run ur agency in one place</p>
+        <p className="text-center">Run your agency in one place</p>
         <div className="bg-gradient-to-r from-primary to-secondary-foreground text-transparent bg-clip-text relative">
           <h1 className="text-9xl font-bold text-center md:text-[300px]">
             Zylo
@@ -35,7 +35,7 @@ export default function Home() {
           <div className="bottom-0 top-[50%] bg-gradient-to-t dark:from-background left-0 right-0 absolute z-10"></div>
         </div>
       </section>
-      <section className="flex justify-center items-center flex-col gap-4 md:mt-20">
+      <section className="flex justify-center items-center flex-col gap-4 md:mt-20 mt-10 ">
         <h2 className="text-4xl text-center">Choose what fits you right</h2>
         <p className="text-muted-foreground text-center">
           Our straightforward pricing planes are tailored to meet you needs. If{" "}
@@ -80,7 +80,7 @@ export default function Home() {
                       );
                     })}
                   </div>
-                  <Link href={`/agency?plan=${card.priceId}`} className={clsx('w-full text-center bg-primary p-2 rounded-md', {'!bg-muted-foreground':card.title==='Unlimited Saas'})}>
+                  <Link href={`/agency?plan=${card.priceId}`} className={clsx('w-full text-center bg-primary p-2 rounded-md text-white', {'!bg-muted-foreground':card.title !=='Unlimited Saas'})}>
                   Get Started
                   </Link>
 
@@ -93,3 +93,4 @@ export default function Home() {
     </>
   );
 }
+
