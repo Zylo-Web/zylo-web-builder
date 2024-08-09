@@ -40,11 +40,11 @@ export const saveActivityLogNotification = async ({
   const authUser = await currentUser();
   let userData;
   if (!authUser) {
-    const response = await db.user.findFirst({
+    const userResponse = await db.user.findFirst({
       where: { Agency: { SubAccount: { some: { id: subaccoutId } } } },
     });
-    if (response) {
-      userData = response;
+    if (userResponse) {
+      userData = userResponse;
     } else {
       userData = await db.user.findUnique({
         where: { email: authUser?.emailAddresses[0].emailAddress },
@@ -61,50 +61,89 @@ export const saveActivityLogNotification = async ({
         "You need to provide at least an agency Id or subaccount Id"
       );
     }
-    const response = await db.subAccount.findUnique({
+    const subAccountResponse = await db.subAccount.findUnique({
       where: { id: subaccoutId },
     });
-    if (response) {
-      foundAgencyId = response.agencyId;
+    if (subAccountResponse) {
+      foundAgencyId = subAccountResponse.agencyId;
     }
-  }
-  if (subaccoutId) {
-    await db.notification.create({
-      data: {
-        notification: `${userData?.name} | ${description}`,
-        User: {
-          connect: {
-            id: userData?.id,
+    if (subaccoutId) {
+      await db.notification.create({
+        data: {
+          notification: `${userData?.name} | ${description}`,
+          User: {
+            connect: {
+              id: userData?.id,
+            },
+          },
+          Agency: {
+            connect: {
+              id: foundAgencyId,
+            },
+          },
+          SubAccount: {
+            connect: {
+              id: subaccoutId,
+            },
           },
         },
-        Agency: {
-          connect: {
-            id: foundAgencyId,
+      });
+    } else {
+      await db.notification.create({
+        data: {
+          notification: `${userData?.name} | ${description}`,
+          User: {
+            connect: {
+              id: userData?.id,
+            },
+          },
+          Agency: {
+            connect: {
+              id: foundAgencyId,
+            },
           },
         },
-        SubAccount: {
-          connect: {
-            id: subaccoutId,
-          },
-        },
-      },
-    });
+      });
+    }
   } else {
-    await db.notification.create({
-      data: {
-        notification: `${userData?.name} | ${description}`,
-        User: {
-          connect: {
-            id: userData?.id,
+    if (subaccoutId) {
+      await db.notification.create({
+        data: {
+          notification: `${userData?.name} | ${description}`,
+          User: {
+            connect: {
+              id: userData?.id,
+            },
+          },
+          Agency: {
+            connect: {
+              id: agencyId,
+            },
+          },
+          SubAccount: {
+            connect: {
+              id: subaccoutId,
+            },
           },
         },
-        Agency: {
-          connect: {
-            id: foundAgencyId,
+      });
+    } else {
+      await db.notification.create({
+        data: {
+          notification: `${userData?.name} | ${description}`,
+          User: {
+            connect: {
+              id: userData?.id,
+            },
+          },
+          Agency: {
+            connect: {
+              id: agencyId,
+            },
           },
         },
-      },
-    });
+      });
+    }
   }
 };
 
@@ -152,9 +191,9 @@ export const verifyAndAcceptInvitation = async () => {
       return userDetails.agencyId;
     } else return null;
   } else {
-    const agency = await await db.user.findUnique({
+    const agency = await db.user.findUnique({
       where: { email: user.emailAddresses[0].emailAddress },
     });
-    return agency?agency.agencyId:null
+    return agency ? agency.agencyId : null;
   }
 };
