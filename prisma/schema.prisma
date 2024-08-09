@@ -14,8 +14,6 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-
-
 enum Role {
   AGENCY_OWNER
   AGENCY_ADMIN
