@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/globle/mode-toggle";
+import { ModeToggle } from "@/components/global/mode-toggle";
 import { SignedOut, UserButton } from "@clerk/nextjs";
 import { currentUser, User } from "@clerk/nextjs/server";
 import Image from "next/image";
