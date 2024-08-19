@@ -4,6 +4,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { db } from "./db";
 import { redirect } from "next/navigation";
 import { User } from "@prisma/client";
+
 export const getAuthUserDetails = async () => {
   const user = await currentUser();
   if (!user) {
@@ -31,6 +32,7 @@ export const getAuthUserDetails = async () => {
 
   return userData;
 };
+
 export const saveActivityLogsNotification = async ({
   agencyId,
   description,
