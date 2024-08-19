@@ -1,9 +1,14 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isPublicRoute = createRouteMatcher(["/site(.*)", "/api/uploadthing(.*)"]);
+const isPublicRoute = createRouteMatcher([
+  "/site(.*)",
+  "/api/uploadthing(.*)",
+  "/agency(.*)",
+  "/subaccount(.*)",
+]);
 
-const isProtectedRoute = createRouteMatcher(["/agency(.*)", "/subaccount(.*)"]);
+const isProtectedRoute = createRouteMatcher([]);
 
 export default clerkMiddleware((auth, req) => {
   const url = req.nextUrl;
