@@ -9,7 +9,8 @@ type Props = {
   user?: null | User;
 };
 const Navigation = ({ user }: Props) => {
-  const userss = currentUser();
+
+  const userss = currentUser()
 
   return (
     <div className="p-4 flex items-center justify-between relative">
@@ -31,16 +32,16 @@ const Navigation = ({ user }: Props) => {
         </ul>
       </nav>
       <aside className=" flex gap-2 items-center">
+
+        
         <SignedOut>
-          <Link
-            href={"/sign-in"}
-            className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80"
-          >
-            Login
-          </Link>
+
+        <Link href={'/agency'} className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80">
+          Login
+        </Link>
         </SignedOut>
         <UserButton />
-
+       
         <ModeToggle />
       </aside>
     </div>
